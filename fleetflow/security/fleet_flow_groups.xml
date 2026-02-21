@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Privilege (replaces old ir.module.category pattern in Odoo 19) -->
+    <record model="res.groups.privilege" id="res_groups_privilege_fleetflow">
+        <field name="name">FleetFlow</field>
+        <field name="sequence">200</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+
+    <!-- ============================================================ -->
+    <!--  RBAC Security Groups                                         -->
+    <!-- ============================================================ -->
+
+    <!-- Group 1: Financial Analyst (read-only reports) -->
+    <record id="fleetflow_group_financial_analyst" model="res.groups">
+        <field name="name">Financial Analyst</field>
+        <field name="sequence">10</field>
+        <field name="privilege_id" ref="res_groups_privilege_fleetflow"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="comment">Read-only access to fuel spend, maintenance ROI, operational costs, and export reports.</field>
+    </record>
+
+    <!-- Group 2: Safety Officer (driver compliance) -->
+    <record id="fleetflow_group_safety_officer" model="res.groups">
+        <field name="name">Safety Officer</field>
+        <field name="sequence">20</field>
+        <field name="privilege_id" ref="res_groups_privilege_fleetflow"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="comment">Monitor driver compliance, license expiry tracking, manage safety scores and driver status.</field>
+    </record>
+
+    <!-- Group 3: Dispatcher (trip/vehicle ops) -->
+    <record id="fleetflow_group_dispatcher" model="res.groups">
+        <field name="name">Dispatcher</field>
+        <field name="sequence">30</field>
+        <field name="privilege_id" ref="res_groups_privilege_fleetflow"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="comment">Create and manage trips, assign drivers to available vehicles, validate cargo loads.</field>
+    </record>
+
+    <!-- Group 4: Fleet Manager (full access) -->
+    <record id="fleetflow_group_fleet_manager" model="res.groups">
+        <field name="name">Fleet Manager</field>
+        <field name="sequence">40</field>
+        <field name="privilege_id" ref="res_groups_privilege_fleetflow"/>
+        <field name="implied_ids" eval="[
+            (4, ref('fleetflow_group_dispatcher')),
+            (4, ref('fleetflow_group_safety_officer')),
+            (4, ref('fleetflow_group_financial_analyst')),
+        ]"/>
+        <field name="user_ids" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        <field name="comment">Full system access: vehicle health, asset lifecycle, scheduling, analytics, and reports.</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- ============================================================ -->
+    <!--  Root Menu                                                    -->
+    <!-- ============================================================ -->
+    <menuitem id="fleetflow_menu_root"
+        name="FleetFlow"
+        web_icon="fleetflow,static/description/icon.png"
+        sequence="190"/>
+
+    <!-- ============================================================ -->
+    <!--  1. Dashboard                                                 -->
+    <!-- ============================================================ -->
+    <menuitem id="fleetflow_menu_dashboard"
+        name="Dashboard"
+        parent="fleetflow_menu_root"
+        sequence="10"/>
+
+    <menuitem id="fleetflow_menu_dashboard_active_fleet"
+        name="Active Fleet (On Trip)"
+        parent="fleetflow_menu_dashboard"
+        action="fleetflow_dashboard_active_fleet_action"
+        sequence="5"/>
+
+    <menuitem id="fleetflow_menu_dashboard_pending_cargo"
+        name="Pending Cargo"
+        parent="fleetflow_menu_dashboard"
+        action="fleetflow_dashboard_pending_cargo_action"
+        sequence="8"/>
+
+    <menuitem id="fleetflow_menu_dashboard_active_trips"
+        name="Active Trips"
+        parent="fleetflow_menu_dashboard"
+        action="fleetflow_dashboard_active_trips_action"
+        sequence="10"/>
+
+    <menuitem id="fleetflow_menu_dashboard_available_vehicles"
+        name="Available Vehicles"
+        parent="fleetflow_menu_dashboard"
+        action="fleetflow_dashboard_available_vehicles_action"
+        sequence="20"/>
+
+    <menuitem id="fleetflow_menu_dashboard_in_shop"
+        name="Vehicles In Shop"
+        parent="fleetflow_menu_dashboard"
+        action="fleetflow_dashboard_in_shop_action"
+        sequence="30"/>
+
+    <menuitem id="fleetflow_menu_dashboard_drivers_on_trip"
+        name="Drivers On Trip"
+        parent="fleetflow_menu_dashboard"
+        action="fleetflow_dashboard_drivers_on_trip_action"
+        sequence="40"/>
+
+    <menuitem id="fleetflow_menu_dashboard_license_expiring"
+        name="License Expiring Soon"
+        parent="fleetflow_menu_dashboard"
+        action="fleetflow_dashboard_license_expiring_action"
+        sequence="50"/>
+
+    <menuitem id="fleetflow_menu_dashboard_pending_maintenance"
+        name="Pending Maintenance"
+        parent="fleetflow_menu_dashboard"
+        action="fleetflow_dashboard_pending_maintenance_action"
+        sequence="60"/>
+
+    <!-- ============================================================ -->
+    <!--  2. Vehicles                                                  -->
+    <!-- ============================================================ -->
+    <menuitem id="fleetflow_menu_vehicles"
+        name="Vehicles"
+        parent="fleetflow_menu_root"
+        sequence="20"/>
+
+    <menuitem id="fleetflow_menu_vehicle_list"
+        name="All Vehicles"
+        parent="fleetflow_menu_vehicles"
+        action="fleetflow_vehicle_action"
+        sequence="10"/>
+
+    <!-- ============================================================ -->
+    <!--  3. Drivers                                                   -->
+    <!-- ============================================================ -->
+    <menuitem id="fleetflow_menu_drivers"
+        name="Drivers"
+        parent="fleetflow_menu_root"
+        sequence="30"/>
+
+    <menuitem id="fleetflow_menu_driver_list"
+        name="All Drivers"
+        parent="fleetflow_menu_drivers"
+        action="fleetflow_driver_action"
+        sequence="10"/>
+
+    <!-- ============================================================ -->
+    <!--  4. Trips                                                     -->
+    <!-- ============================================================ -->
+    <menuitem id="fleetflow_menu_trips"
+        name="Trips"
+        parent="fleetflow_menu_root"
+        sequence="40"/>
+
+    <menuitem id="fleetflow_menu_trip_list"
+        name="All Trips"
+        parent="fleetflow_menu_trips"
+        action="fleetflow_trip_action"
+        sequence="10"/>
+
+    <menuitem id="fleetflow_menu_fuel_expenses"
+        name="Fuel &amp; Expenses"
+        parent="fleetflow_menu_trips"
+        action="fleetflow_fuel_expense_action"
+        sequence="20"/>
+
+    <!-- ============================================================ -->
+    <!--  5. Maintenance                                               -->
+    <!-- ============================================================ -->
+    <menuitem id="fleetflow_menu_maintenance"
+        name="Maintenance"
+        parent="fleetflow_menu_root"
+        sequence="50"/>
+
+    <menuitem id="fleetflow_menu_maintenance_list"
+        name="Service Logs"
+        parent="fleetflow_menu_maintenance"
+        action="fleetflow_maintenance_action"
+        sequence="10"/>
+
+    <!-- ============================================================ -->
+    <!--  6. Reports & Analytics                                       -->
+    <!-- ============================================================ -->
+    <menuitem id="fleetflow_menu_reports"
+        name="Reports"
+        parent="fleetflow_menu_root"
+        sequence="60"/>
+
+    <menuitem id="fleetflow_menu_vehicle_analytics"
+        name="Vehicle Analytics"
+        parent="fleetflow_menu_reports"
+        action="fleetflow_vehicle_analytics_action"
+        sequence="10"/>
+
+    <menuitem id="fleetflow_menu_trip_analytics"
+        name="Trip Analytics"
+        parent="fleetflow_menu_reports"
+        action="fleetflow_trip_analytics_action"
+        sequence="20"/>
+
+    <menuitem id="fleetflow_menu_expense_analytics"
+        name="Fuel &amp; Cost Analytics"
+        parent="fleetflow_menu_reports"
+        action="fleetflow_expense_analytics_action"
+        sequence="30"/>
+
+    <menuitem id="fleetflow_menu_report_wizard"
+        name="Export Reports (CSV)"
+        parent="fleetflow_menu_reports"
+        action="fleetflow_report_wizard_action"
+        sequence="40"/>
+
+</odoo>

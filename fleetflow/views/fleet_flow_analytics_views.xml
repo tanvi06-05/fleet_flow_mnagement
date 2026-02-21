@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- ============================================================ -->
+    <!--  Vehicle Analytics — Pivot                                    -->
+    <!-- ============================================================ -->
+    <record id="fleetflow_vehicle_view_pivot" model="ir.ui.view">
+        <field name="name">fleet.flow.vehicle.pivot</field>
+        <field name="model">fleet.flow.vehicle</field>
+        <field name="arch" type="xml">
+            <pivot string="Vehicle Analytics" sample="1">
+                <field name="vehicle_type" type="col"/>
+                <field name="status" type="row"/>
+                <field name="total_revenue" type="measure"/>
+                <field name="total_fuel_cost" type="measure"/>
+                <field name="total_maintenance_cost" type="measure"/>
+                <field name="roi" type="measure"/>
+                <field name="total_distance" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!--  Vehicle Analytics — Graph                                    -->
+    <!-- ============================================================ -->
+    <record id="fleetflow_vehicle_view_graph" model="ir.ui.view">
+        <field name="name">fleet.flow.vehicle.graph</field>
+        <field name="model">fleet.flow.vehicle</field>
+        <field name="arch" type="xml">
+            <graph string="Vehicle Analytics" sample="1">
+                <field name="vehicle_type"/>
+                <field name="total_revenue" type="measure"/>
+                <field name="total_fuel_cost" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="fleetflow_vehicle_analytics_action" model="ir.actions.act_window">
+        <field name="name">Vehicle Analytics</field>
+        <field name="res_model">fleet.flow.vehicle</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">No vehicle data for analysis</p>
+        </field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!--  Trip Analytics — Pivot                                       -->
+    <!-- ============================================================ -->
+    <record id="fleetflow_trip_view_pivot" model="ir.ui.view">
+        <field name="name">fleet.flow.trip.pivot</field>
+        <field name="model">fleet.flow.trip</field>
+        <field name="arch" type="xml">
+            <pivot string="Trip Analytics" sample="1">
+                <field name="vehicle_id" type="row"/>
+                <field name="driver_id" type="row"/>
+                <field name="revenue" type="measure"/>
+                <field name="cargo_weight" type="measure"/>
+                <field name="distance" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!--  Trip Analytics — Graph                                       -->
+    <!-- ============================================================ -->
+    <record id="fleetflow_trip_view_graph" model="ir.ui.view">
+        <field name="name">fleet.flow.trip.graph</field>
+        <field name="model">fleet.flow.trip</field>
+        <field name="arch" type="xml">
+            <graph string="Trip Analytics" sample="1">
+                <field name="vehicle_id"/>
+                <field name="revenue" type="measure"/>
+                <field name="distance" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="fleetflow_trip_analytics_action" model="ir.actions.act_window">
+        <field name="name">Trip Analytics</field>
+        <field name="res_model">fleet.flow.trip</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="context">{'search_default_completed': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">No trip data for analysis</p>
+        </field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!--  Fuel & Expense Analytics — Pivot                             -->
+    <!-- ============================================================ -->
+    <record id="fleetflow_fuel_expense_view_pivot" model="ir.ui.view">
+        <field name="name">fleet.flow.fuel.expense.pivot</field>
+        <field name="model">fleet.flow.fuel.expense</field>
+        <field name="arch" type="xml">
+            <pivot string="Fuel &amp; Expense Analytics" sample="1">
+                <field name="date" type="col" interval="month"/>
+                <field name="vehicle_id" type="row"/>
+                <field name="expense_type" type="col"/>
+                <field name="amount" type="measure"/>
+                <field name="liters" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!--  Fuel & Expense Analytics — Graph                             -->
+    <!-- ============================================================ -->
+    <record id="fleetflow_fuel_expense_view_graph" model="ir.ui.view">
+        <field name="name">fleet.flow.fuel.expense.graph</field>
+        <field name="model">fleet.flow.fuel.expense</field>
+        <field name="arch" type="xml">
+            <graph string="Fuel &amp; Expense Analytics" sample="1">
+                <field name="date" interval="month"/>
+                <field name="expense_type"/>
+                <field name="amount" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="fleetflow_expense_analytics_action" model="ir.actions.act_window">
+        <field name="name">Fuel &amp; Cost Analytics</field>
+        <field name="res_model">fleet.flow.fuel.expense</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">No expense data for analysis</p>
+        </field>
+    </record>
+
+</odoo>

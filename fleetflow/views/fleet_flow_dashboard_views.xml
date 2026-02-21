@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- ============================================================ -->
+    <!--  Dashboard Shortcut Actions                                   -->
+    <!-- ============================================================ -->
+
+    <!-- Active Fleet (vehicles On Trip) -->
+    <record id="fleetflow_dashboard_active_fleet_action" model="ir.actions.act_window">
+        <field name="name">Active Fleet (On Trip)</field>
+        <field name="res_model">fleet.flow.vehicle</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('status', '=', 'on_trip')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No vehicles currently on trip</p>
+        </field>
+    </record>
+
+    <!-- Pending Cargo (Draft Trips awaiting dispatch) -->
+    <record id="fleetflow_dashboard_pending_cargo_action" model="ir.actions.act_window">
+        <field name="name">Pending Cargo</field>
+        <field name="res_model">fleet.flow.trip</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('state', '=', 'draft')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No pending cargo shipments</p>
+        </field>
+    </record>
+
+    <!-- Active Trips (dispatched + on_trip) -->
+    <record id="fleetflow_dashboard_active_trips_action" model="ir.actions.act_window">
+        <field name="name">Active Trips</field>
+        <field name="res_model">fleet.flow.trip</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('state', 'in', ['dispatched', 'on_trip'])]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No active trips currently</p>
+        </field>
+    </record>
+
+    <!-- Vehicles Available -->
+    <record id="fleetflow_dashboard_available_vehicles_action" model="ir.actions.act_window">
+        <field name="name">Available Vehicles</field>
+        <field name="res_model">fleet.flow.vehicle</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('status', '=', 'available')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No available vehicles</p>
+        </field>
+    </record>
+
+    <!-- Vehicles In Shop -->
+    <record id="fleetflow_dashboard_in_shop_action" model="ir.actions.act_window">
+        <field name="name">Vehicles In Shop</field>
+        <field name="res_model">fleet.flow.vehicle</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('status', '=', 'in_shop')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No vehicles currently in the shop</p>
+        </field>
+    </record>
+
+    <!-- Drivers On Trip -->
+    <record id="fleetflow_dashboard_drivers_on_trip_action" model="ir.actions.act_window">
+        <field name="name">Drivers On Trip</field>
+        <field name="res_model">fleet.flow.driver</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('status', '=', 'on_trip')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No drivers currently on trip</p>
+        </field>
+    </record>
+
+    <!-- License Expiring Soon -->
+    <record id="fleetflow_dashboard_license_expiring_action" model="ir.actions.act_window">
+        <field name="name">License Expiring Soon</field>
+        <field name="res_model">fleet.flow.driver</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_license_expired', '=', False), ('license_days_remaining', '&lt;=', 30)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No licenses expiring soon</p>
+        </field>
+    </record>
+
+    <!-- Pending Maintenance -->
+    <record id="fleetflow_dashboard_pending_maintenance_action" model="ir.actions.act_window">
+        <field name="name">Pending Maintenance</field>
+        <field name="res_model">fleet.flow.maintenance</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('state', 'in', ['planned', 'in_progress'])]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No pending maintenance</p>
+        </field>
+    </record>
+
+</odoo>

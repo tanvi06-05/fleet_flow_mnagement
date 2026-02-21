@@ -1,0 +1,7 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+fleetflow.access_fleet_flow_vehicle,access_fleet_flow_vehicle,fleetflow.model_fleet_flow_vehicle,base.group_user,1,1,1,1
+fleetflow.access_fleet_flow_driver,access_fleet_flow_driver,fleetflow.model_fleet_flow_driver,base.group_user,1,1,1,1
+fleetflow.access_fleet_flow_trip,access_fleet_flow_trip,fleetflow.model_fleet_flow_trip,base.group_user,1,1,1,1
+fleetflow.access_fleet_flow_maintenance,access_fleet_flow_maintenance,fleetflow.model_fleet_flow_maintenance,base.group_user,1,1,1,1
+fleetflow.access_fleet_flow_fuel_expense,access_fleet_flow_fuel_expense,fleetflow.model_fleet_flow_fuel_expense,base.group_user,1,1,1,1
+fleetflow.access_fleet_flow_report_wizard,access_fleet_flow_report_wizard,fleetflow.model_fleet_flow_report_wizard,base.group_user,1,1,1,1

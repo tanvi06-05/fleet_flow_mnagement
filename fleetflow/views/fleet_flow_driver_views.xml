@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- ============================================================ -->
+    <!--  Driver Form View                                             -->
+    <!-- ============================================================ -->
+    <record id="fleetflow_driver_view_form" model="ir.ui.view">
+        <field name="name">fleet.flow.driver.form</field>
+        <field name="model">fleet.flow.driver</field>
+        <field name="arch" type="xml">
+            <form string="Driver">
+                <header>
+                    <button name="action_suspend" string="Suspend"
+                        type="object" class="btn-secondary"
+                        invisible="status == 'suspended'"
+                        groups="fleetflow.fleetflow_group_safety_officer"/>
+                    <button name="action_reactivate" string="Reactivate"
+                        type="object" class="btn-primary"
+                        invisible="status != 'suspended'"
+                        groups="fleetflow.fleetflow_group_safety_officer"/>
+                    <field name="status" widget="statusbar"
+                        statusbar_visible="on_duty,on_trip,off_duty,suspended"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_trips" type="object"
+                            class="oe_stat_button" icon="fa-road">
+                            <field name="trip_count" widget="statinfo" string="Trips"/>
+                        </button>
+                    </div>
+                    <!-- License Expiry Alert Banner -->
+                    <div class="alert alert-danger" role="alert"
+                        invisible="not is_license_expired">
+                        <strong>⚠ License Expired!</strong>
+                        This driver's license has expired. They cannot be dispatched on trips.
+                    </div>
+                    <div class="alert alert-warning" role="alert"
+                        invisible="is_license_expired or license_days_remaining &gt; 30">
+                        <strong>⏰ License Expiring Soon!</strong>
+                        This driver's license expires in <field name="license_days_remaining" readonly="1"/> days.
+                    </div>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Driver Name" class="w-100"/>
+                        </h1>
+                    </div>
+                    <group col="2">
+                        <group string="License Info">
+                            <field name="active" invisible="1"/>
+                            <field name="license_number"/>
+                            <field name="license_category"/>
+                            <field name="license_expiry"/>
+                            <field name="is_license_expired" invisible="1"/>
+                            <field name="license_days_remaining" invisible="1"/>
+                        </group>
+                        <group string="Contact &amp; Performance">
+                            <field name="phone" widget="phone"/>
+                            <field name="email" widget="email"/>
+                            <field name="safety_score"/>
+                            <field name="completed_trip_count"/>
+                            <field name="completion_rate" widget="float" string="Completion Rate (%)"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes" name="page_notes">
+                            <field name="notes" nolabel="1"
+                                placeholder="Additional information about this driver"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!--  Driver List View                                             -->
+    <!-- ============================================================ -->
+    <record id="fleetflow_driver_view_list" model="ir.ui.view">
+        <field name="name">fleet.flow.driver.list</field>
+        <field name="model">fleet.flow.driver</field>
+        <field name="arch" type="xml">
+            <list string="Drivers" sample="1"
+                decoration-danger="is_license_expired"
+                decoration-warning="not is_license_expired and license_days_remaining &lt;= 30">
+                <field name="name" readonly="1"/>
+                <field name="license_number"/>
+                <field name="license_category"/>
+                <field name="license_expiry"/>
+                <field name="phone" optional="show"/>
+                <field name="safety_score"/>
+                <field name="completed_trip_count" optional="show"/>
+                <field name="completion_rate" string="Completion %" optional="show"/>
+                <field name="status" widget="badge"
+                    decoration-success="status == 'on_duty'"
+                    decoration-info="status == 'on_trip'"
+                    decoration-muted="status == 'off_duty'"
+                    decoration-danger="status == 'suspended'"/>
+                <field name="is_license_expired" column_invisible="True"/>
+                <field name="license_days_remaining" column_invisible="True"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!--  Driver Search View                                           -->
+    <!-- ============================================================ -->
+    <record id="fleetflow_driver_view_search" model="ir.ui.view">
+        <field name="name">fleet.flow.driver.search</field>
+        <field name="model">fleet.flow.driver</field>
+        <field name="arch" type="xml">
+            <search string="Search Drivers">
+                <field name="name"/>
+                <field name="license_number"/>
+                <field name="license_category"/>
+                <filter string="On Duty" name="on_duty" domain="[('status', '=', 'on_duty')]"/>
+                <filter string="On Trip" name="on_trip" domain="[('status', '=', 'on_trip')]"/>
+                <filter string="Suspended" name="suspended" domain="[('status', '=', 'suspended')]"/>
+                <separator/>
+                <filter string="License Expired" name="expired" domain="[('is_license_expired', '=', True)]"/>
+                <filter string="Expiring Soon (30 days)" name="expiring_soon"
+                    domain="[('is_license_expired', '=', False), ('license_days_remaining', '&lt;=', 30)]"/>
+                <group>
+                    <filter string="License Category" name="groupby_category" context="{'group_by': 'license_category'}"/>
+                    <filter string="Status" name="groupby_status" context="{'group_by': 'status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!--  Driver Action                                                -->
+    <!-- ============================================================ -->
+    <record id="fleetflow_driver_action" model="ir.actions.act_window">
+        <field name="name">Drivers</field>
+        <field name="res_model">fleet.flow.driver</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Register your first driver!
+            </p>
+            <p>Track license compliance, safety scores, and trip performance.</p>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- ============================================================ -->
+    <!--  Report Wizard Form View                                      -->
+    <!-- ============================================================ -->
+    <record id="fleetflow_report_wizard_view_form" model="ir.ui.view">
+        <field name="name">fleet.flow.report.wizard.form</field>
+        <field name="model">fleet.flow.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Export Report">
+                <group>
+                    <group string="Report Configuration">
+                        <field name="report_type"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group string="Filters">
+                        <field name="vehicle_id"/>
+                        <field name="driver_id"
+                            invisible="report_type not in ('trip_summary', 'driver_performance')"/>
+                    </group>
+                </group>
+                <group invisible="not csv_file">
+                    <field name="csv_file" filename="csv_filename"/>
+                    <field name="csv_filename" invisible="1"/>
+                </group>
+                <footer>
+                    <button name="action_generate_report" string="Generate &amp; Download CSV"
+                        type="object" class="btn-primary"/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!--  Report Wizard Action                                         -->
+    <!-- ============================================================ -->
+    <record id="fleetflow_report_wizard_action" model="ir.actions.act_window">
+        <field name="name">Export Reports</field>
+        <field name="res_model">fleet.flow.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
