@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <!-- ============================================================ -->
-    <!--  Fuel & Expense Form View                                     -->
-    <!-- ============================================================ -->
     <record id="fleetflow_fuel_expense_view_form" model="ir.ui.view">
         <field name="name">fleet.flow.fuel.expense.form</field>
         <field name="model">fleet.flow.fuel.expense</field>
@@ -31,9 +28,6 @@
         </field>
     </record>
 
-    <!-- ============================================================ -->
-    <!--  Fuel & Expense List View                                     -->
-    <!-- ============================================================ -->
     <record id="fleetflow_fuel_expense_view_list" model="ir.ui.view">
         <field name="name">fleet.flow.fuel.expense.list</field>
         <field name="model">fleet.flow.fuel.expense</field>
@@ -51,9 +45,6 @@
         </field>
     </record>
 
-    <!-- ============================================================ -->
-    <!--  Fuel & Expense Search View                                   -->
-    <!-- ============================================================ -->
     <record id="fleetflow_fuel_expense_view_search" model="ir.ui.view">
         <field name="name">fleet.flow.fuel.expense.search</field>
         <field name="model">fleet.flow.fuel.expense</field>
@@ -78,9 +69,6 @@
         </field>
     </record>
 
-    <!-- ============================================================ -->
-    <!--  Fuel & Expense Action                                        -->
-    <!-- ============================================================ -->
     <record id="fleetflow_fuel_expense_action" model="ir.actions.act_window">
         <field name="name">Fuel &amp; Expenses</field>
         <field name="res_model">fleet.flow.fuel.expense</field>

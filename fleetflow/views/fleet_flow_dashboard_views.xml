@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <!-- ============================================================ -->
-    <!--  Dashboard Shortcut Actions                                   -->
-    <!-- ============================================================ -->
+    <record id="fleetflow_dashboard_client_action" model="ir.actions.client">
+        <field name="name">FleetFlow Command Center</field>
+        <field name="tag">fleetflow_dashboard</field>
+    </record>
 
-    <!-- Active Fleet (vehicles On Trip) -->
     <record id="fleetflow_dashboard_active_fleet_action" model="ir.actions.act_window">
         <field name="name">Active Fleet (On Trip)</field>
         <field name="res_model">fleet.flow.vehicle</field>
@@ -16,7 +16,6 @@
         </field>
     </record>
 
-    <!-- Pending Cargo (Draft Trips awaiting dispatch) -->
     <record id="fleetflow_dashboard_pending_cargo_action" model="ir.actions.act_window">
         <field name="name">Pending Cargo</field>
         <field name="res_model">fleet.flow.trip</field>
@@ -27,7 +26,6 @@
         </field>
     </record>
 
-    <!-- Active Trips (dispatched + on_trip) -->
     <record id="fleetflow_dashboard_active_trips_action" model="ir.actions.act_window">
         <field name="name">Active Trips</field>
         <field name="res_model">fleet.flow.trip</field>
@@ -38,7 +36,6 @@
         </field>
     </record>
 
-    <!-- Vehicles Available -->
     <record id="fleetflow_dashboard_available_vehicles_action" model="ir.actions.act_window">
         <field name="name">Available Vehicles</field>
         <field name="res_model">fleet.flow.vehicle</field>
@@ -49,7 +46,6 @@
         </field>
     </record>
 
-    <!-- Vehicles In Shop -->
     <record id="fleetflow_dashboard_in_shop_action" model="ir.actions.act_window">
         <field name="name">Vehicles In Shop</field>
         <field name="res_model">fleet.flow.vehicle</field>
@@ -60,7 +56,6 @@
         </field>
     </record>
 
-    <!-- Drivers On Trip -->
     <record id="fleetflow_dashboard_drivers_on_trip_action" model="ir.actions.act_window">
         <field name="name">Drivers On Trip</field>
         <field name="res_model">fleet.flow.driver</field>
@@ -71,7 +66,6 @@
         </field>
     </record>
 
-    <!-- License Expiring Soon -->
     <record id="fleetflow_dashboard_license_expiring_action" model="ir.actions.act_window">
         <field name="name">License Expiring Soon</field>
         <field name="res_model">fleet.flow.driver</field>
@@ -82,7 +76,6 @@
         </field>
     </record>
 
-    <!-- Pending Maintenance -->
     <record id="fleetflow_dashboard_pending_maintenance_action" model="ir.actions.act_window">
         <field name="name">Pending Maintenance</field>
         <field name="res_model">fleet.flow.maintenance</field>

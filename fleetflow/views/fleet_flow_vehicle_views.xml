@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <!-- ============================================================ -->
-    <!--  Vehicle Form View                                            -->
-    <!-- ============================================================ -->
     <record id="fleetflow_vehicle_view_form" model="ir.ui.view">
         <field name="name">fleet.flow.vehicle.form</field>
         <field name="model">fleet.flow.vehicle</field>
@@ -88,9 +85,6 @@
         </field>
     </record>
 
-    <!-- ============================================================ -->
-    <!--  Vehicle List View                                            -->
-    <!-- ============================================================ -->
     <record id="fleetflow_vehicle_view_list" model="ir.ui.view">
         <field name="name">fleet.flow.vehicle.list</field>
         <field name="model">fleet.flow.vehicle</field>
@@ -116,9 +110,6 @@
         </field>
     </record>
 
-    <!-- ============================================================ -->
-    <!--  Vehicle Kanban View                                          -->
-    <!-- ============================================================ -->
     <record id="fleetflow_vehicle_view_kanban" model="ir.ui.view">
         <field name="name">fleet.flow.vehicle.kanban</field>
         <field name="model">fleet.flow.vehicle</field>
@@ -154,9 +145,6 @@
         </field>
     </record>
 
-    <!-- ============================================================ -->
-    <!--  Vehicle Search View                                          -->
-    <!-- ============================================================ -->
     <record id="fleetflow_vehicle_view_search" model="ir.ui.view">
         <field name="name">fleet.flow.vehicle.search</field>
         <field name="model">fleet.flow.vehicle</field>
@@ -181,9 +169,6 @@
         </field>
     </record>
 
-    <!-- ============================================================ -->
-    <!--  Vehicle Action                                               -->
-    <!-- ============================================================ -->
     <record id="fleetflow_vehicle_action" model="ir.actions.act_window">
         <field name="name">Vehicles</field>
         <field name="res_model">fleet.flow.vehicle</field>

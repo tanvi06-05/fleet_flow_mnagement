@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <!-- ============================================================ -->
-    <!--  Report Wizard Form View                                      -->
-    <!-- ============================================================ -->
     <record id="fleetflow_report_wizard_view_form" model="ir.ui.view">
         <field name="name">fleet.flow.report.wizard.form</field>
         <field name="model">fleet.flow.report.wizard</field>
@@ -21,22 +18,17 @@
                             invisible="report_type not in ('trip_summary', 'driver_performance')"/>
                     </group>
                 </group>
-                <group invisible="not csv_file">
-                    <field name="csv_file" filename="csv_filename"/>
-                    <field name="csv_filename" invisible="1"/>
-                </group>
                 <footer>
-                    <button name="action_generate_report" string="Generate &amp; Download CSV"
-                        type="object" class="btn-primary"/>
+                    <button name="action_generate_report"
+                            string="Generate &amp; Download CSV"
+                            type="object"
+                            class="btn-primary"/>
                     <button string="Close" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>
         </field>
     </record>
 
-    <!-- ============================================================ -->
-    <!--  Report Wizard Action                                         -->
-    <!-- ============================================================ -->
     <record id="fleetflow_report_wizard_action" model="ir.actions.act_window">
         <field name="name">Export Reports</field>
         <field name="res_model">fleet.flow.report.wizard</field>

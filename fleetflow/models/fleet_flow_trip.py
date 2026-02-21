@@ -7,6 +7,7 @@ class FleetFlowTrip(models.Model):
     _name = 'fleet.flow.trip'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'FleetFlow Trip'
+    _rec_name = 'name'
     _order = 'name desc'
 
     name = fields.Char(

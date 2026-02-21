@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <!-- ============================================================ -->
-    <!--  Maintenance Form View                                        -->
-    <!-- ============================================================ -->
     <record id="fleetflow_maintenance_view_form" model="ir.ui.view">
         <field name="name">fleet.flow.maintenance.form</field>
         <field name="model">fleet.flow.maintenance</field>
@@ -46,9 +43,6 @@
         </field>
     </record>
 
-    <!-- ============================================================ -->
-    <!--  Maintenance List View                                        -->
-    <!-- ============================================================ -->
     <record id="fleetflow_maintenance_view_list" model="ir.ui.view">
         <field name="name">fleet.flow.maintenance.list</field>
         <field name="model">fleet.flow.maintenance</field>
@@ -71,9 +65,6 @@
         </field>
     </record>
 
-    <!-- ============================================================ -->
-    <!--  Maintenance Search View                                      -->
-    <!-- ============================================================ -->
     <record id="fleetflow_maintenance_view_search" model="ir.ui.view">
         <field name="name">fleet.flow.maintenance.search</field>
         <field name="model">fleet.flow.maintenance</field>
@@ -95,9 +86,6 @@
         </field>
     </record>
 
-    <!-- ============================================================ -->
-    <!--  Maintenance Action                                           -->
-    <!-- ============================================================ -->
     <record id="fleetflow_maintenance_action" model="ir.actions.act_window">
         <field name="name">Maintenance</field>
         <field name="res_model">fleet.flow.maintenance</field>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="fleetflow.Dashboard">
+        <div class="o_fleetflow_dashboard o_action_manager">
+            <!-- Header -->
+            <div class="o_fleetflow_dashboard_header">
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="o_dashboard_icon">
+                            <i class="fa fa-truck"/>
+                        </div>
+                        <div>
+                            <h2 class="mb-0 fw-bold">Command Center</h2>
+                            <span class="text-muted small">Fleet operations at a glance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading -->
+            <div t-if="state.isLoading" class="text-center py-5">
+                <i class="fa fa-spinner fa-spin fa-3x text-primary"/>
+                <p class="mt-3 text-muted">Loading dashboard data...</p>
+            </div>
+
+            <div t-else="">
+                <!-- ======== KPI Cards Row ======== -->
+                <div class="row g-3 mb-4">
+                    <!-- Active Fleet -->
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="o_fleetflow_kpi_card o_kpi_primary" t-on-click="openActiveFleet" role="button">
+                            <div class="o_kpi_icon">
+                                <i class="fa fa-truck"/>
+                            </div>
+                            <div class="o_kpi_content">
+                                <span class="o_kpi_value" t-out="state.kpis.active_fleet"/>
+                                <span class="o_kpi_label">Active Fleet</span>
+                                <span class="o_kpi_sublabel">Vehicles on trip</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Utilization Rate -->
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="o_fleetflow_kpi_card o_kpi_success" t-on-click="openAllVehicles" role="button">
+                            <div class="o_kpi_icon">
+                                <i class="fa fa-tachometer"/>
+                            </div>
+                            <div class="o_kpi_content">
+                                <span class="o_kpi_value"><t t-out="state.kpis.utilization_rate"/>%</span>
+                                <span class="o_kpi_label">Utilization Rate</span>
+                                <span class="o_kpi_sublabel">Fleet assigned vs idle</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Maintenance Alerts -->
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="o_fleetflow_kpi_card o_kpi_warning" t-on-click="openMaintenanceAlerts" role="button">
+                            <div class="o_kpi_icon">
+                                <i class="fa fa-wrench"/>
+                            </div>
+                            <div class="o_kpi_content">
+                                <span class="o_kpi_value" t-out="state.kpis.maintenance_alerts"/>
+                                <span class="o_kpi_label">Maintenance Alerts</span>
+                                <span class="o_kpi_sublabel">Vehicles in shop</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pending Cargo -->
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="o_fleetflow_kpi_card o_kpi_info" t-on-click="openPendingCargo" role="button">
+                            <div class="o_kpi_icon">
+                                <i class="fa fa-cube"/>
+                            </div>
+                            <div class="o_kpi_content">
+                                <span class="o_kpi_value" t-out="state.kpis.pending_cargo"/>
+                                <span class="o_kpi_label">Pending Cargo</span>
+                                <span class="o_kpi_sublabel">Awaiting assignment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ======== Detail Sections ======== -->
+                <div class="row g-3">
+                    <!-- Vehicle Breakdown -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="o_fleetflow_detail_card">
+                            <h5 class="o_detail_title">
+                                <i class="fa fa-car me-2 text-primary"/>Vehicle Fleet
+                            </h5>
+                            <div class="o_detail_items">
+                                <div class="o_detail_row" t-on-click="openAvailableVehicles" role="button">
+                                    <span class="o_dot bg-success"/>
+                                    <span class="o_detail_label">Available</span>
+                                    <span class="o_detail_value" t-out="state.vehicles.available"/>
+                                </div>
+                                <div class="o_detail_row" t-on-click="openActiveFleet" role="button">
+                                    <span class="o_dot bg-info"/>
+                                    <span class="o_detail_label">On Trip</span>
+                                    <span class="o_detail_value" t-out="state.vehicles.on_trip"/>
+                                </div>
+                                <div class="o_detail_row" t-on-click="openMaintenanceAlerts" role="button">
+                                    <span class="o_dot bg-warning"/>
+                                    <span class="o_detail_label">In Shop</span>
+                                    <span class="o_detail_value" t-out="state.vehicles.in_shop"/>
+                                </div>
+                                <div class="o_detail_row">
+                                    <span class="o_dot bg-danger"/>
+                                    <span class="o_detail_label">Retired</span>
+                                    <span class="o_detail_value" t-out="state.vehicles.retired"/>
+                                </div>
+                                <div class="o_detail_total" t-on-click="openAllVehicles" role="button">
+                                    <span>Total Fleet</span>
+                                    <span class="fw-bold" t-out="state.vehicles.total"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trip Overview -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="o_fleetflow_detail_card">
+                            <h5 class="o_detail_title">
+                                <i class="fa fa-road me-2 text-info"/>Trip Overview
+                            </h5>
+                            <div class="o_detail_items">
+                                <div class="o_detail_row" t-on-click="openPendingCargo" role="button">
+                                    <span class="o_dot bg-secondary"/>
+                                    <span class="o_detail_label">Draft (Pending)</span>
+                                    <span class="o_detail_value" t-out="state.trips.draft"/>
+                                </div>
+                                <div class="o_detail_row" t-on-click="openActiveTrips" role="button">
+                                    <span class="o_dot bg-primary"/>
+                                    <span class="o_detail_label">Active</span>
+                                    <span class="o_detail_value" t-out="state.trips.active"/>
+                                </div>
+                                <div class="o_detail_row" t-on-click="openCompletedTrips" role="button">
+                                    <span class="o_dot bg-success"/>
+                                    <span class="o_detail_label">Completed</span>
+                                    <span class="o_detail_value" t-out="state.trips.completed"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Driver &amp; Compliance -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="o_fleetflow_detail_card">
+                            <h5 class="o_detail_title">
+                                <i class="fa fa-id-card me-2 text-success"/>Drivers &amp; Compliance
+                            </h5>
+                            <div class="o_detail_items">
+                                <div class="o_detail_row" t-on-click="openAllDrivers" role="button">
+                                    <span class="o_dot bg-success"/>
+                                    <span class="o_detail_label">On Duty</span>
+                                    <span class="o_detail_value" t-out="state.drivers.on_duty"/>
+                                </div>
+                                <div class="o_detail_row">
+                                    <span class="o_dot bg-info"/>
+                                    <span class="o_detail_label">On Trip</span>
+                                    <span class="o_detail_value" t-out="state.drivers.on_trip"/>
+                                </div>
+                                <div class="o_detail_row">
+                                    <span class="o_dot bg-secondary"/>
+                                    <span class="o_detail_label">Suspended</span>
+                                    <span class="o_detail_value" t-out="state.drivers.suspended"/>
+                                </div>
+                                <div class="o_detail_row o_detail_alert" t-on-click="openExpiredLicenses" role="button">
+                                    <span class="o_dot bg-danger"/>
+                                    <span class="o_detail_label text-danger fw-bold">Expired Licenses</span>
+                                    <span class="o_detail_value text-danger fw-bold" t-out="state.drivers.expired_licenses"/>
+                                </div>
+                                <div class="o_detail_row" t-on-click="openExpiringSoon" role="button">
+                                    <span class="o_dot bg-warning"/>
+                                    <span class="o_detail_label">Expiring Soon (30d)</span>
+                                    <span class="o_detail_value" t-out="state.drivers.expiring_soon"/>
+                                </div>
+                                <div class="o_detail_row" t-on-click="openPendingMaintenance" role="button">
+                                    <span class="o_dot bg-warning"/>
+                                    <span class="o_detail_label">Pending Maintenance</span>
+                                    <span class="o_detail_value" t-out="state.maintenance.pending"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

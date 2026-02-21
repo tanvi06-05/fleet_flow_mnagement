@@ -1,7 +1,29 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
-fleetflow.access_fleet_flow_vehicle,access_fleet_flow_vehicle,fleetflow.model_fleet_flow_vehicle,base.group_user,1,1,1,1
-fleetflow.access_fleet_flow_driver,access_fleet_flow_driver,fleetflow.model_fleet_flow_driver,base.group_user,1,1,1,1
-fleetflow.access_fleet_flow_trip,access_fleet_flow_trip,fleetflow.model_fleet_flow_trip,base.group_user,1,1,1,1
-fleetflow.access_fleet_flow_maintenance,access_fleet_flow_maintenance,fleetflow.model_fleet_flow_maintenance,base.group_user,1,1,1,1
-fleetflow.access_fleet_flow_fuel_expense,access_fleet_flow_fuel_expense,fleetflow.model_fleet_flow_fuel_expense,base.group_user,1,1,1,1
-fleetflow.access_fleet_flow_report_wizard,access_fleet_flow_report_wizard,fleetflow.model_fleet_flow_report_wizard,base.group_user,1,1,1,1
+access_fleet_flow_vehicle_user,fleet.flow.vehicle user,model_fleet_flow_vehicle,base.group_user,1,0,0,0
+access_fleet_flow_driver_user,fleet.flow.driver user,model_fleet_flow_driver,base.group_user,1,0,0,0
+access_fleet_flow_trip_user,fleet.flow.trip user,model_fleet_flow_trip,base.group_user,1,0,0,0
+access_fleet_flow_maintenance_user,fleet.flow.maintenance user,model_fleet_flow_maintenance,base.group_user,1,0,0,0
+access_fleet_flow_fuel_expense_user,fleet.flow.fuel.expense user,model_fleet_flow_fuel_expense,base.group_user,1,0,0,0
+access_fleet_flow_report_wizard_user,fleet.flow.report.wizard user,model_fleet_flow_report_wizard,base.group_user,1,0,0,0
+access_fleet_flow_vehicle_financial,fleet.flow.vehicle financial analyst,model_fleet_flow_vehicle,fleetflow.fleetflow_group_financial_analyst,1,0,0,0
+access_fleet_flow_driver_financial,fleet.flow.driver financial analyst,model_fleet_flow_driver,fleetflow.fleetflow_group_financial_analyst,1,0,0,0
+access_fleet_flow_trip_financial,fleet.flow.trip financial analyst,model_fleet_flow_trip,fleetflow.fleetflow_group_financial_analyst,1,0,0,0
+access_fleet_flow_maintenance_financial,fleet.flow.maintenance financial analyst,model_fleet_flow_maintenance,fleetflow.fleetflow_group_financial_analyst,1,0,0,0
+access_fleet_flow_fuel_expense_financial,fleet.flow.fuel.expense financial analyst,model_fleet_flow_fuel_expense,fleetflow.fleetflow_group_financial_analyst,1,0,0,0
+access_fleet_flow_report_wizard_financial,fleet.flow.report.wizard financial analyst,model_fleet_flow_report_wizard,fleetflow.fleetflow_group_financial_analyst,1,1,1,0
+access_fleet_flow_vehicle_safety,fleet.flow.vehicle safety officer,model_fleet_flow_vehicle,fleetflow.fleetflow_group_safety_officer,1,0,0,0
+access_fleet_flow_driver_safety,fleet.flow.driver safety officer,model_fleet_flow_driver,fleetflow.fleetflow_group_safety_officer,1,1,1,0
+access_fleet_flow_trip_safety,fleet.flow.trip safety officer,model_fleet_flow_trip,fleetflow.fleetflow_group_safety_officer,1,0,0,0
+access_fleet_flow_maintenance_safety,fleet.flow.maintenance safety officer,model_fleet_flow_maintenance,fleetflow.fleetflow_group_safety_officer,1,0,0,0
+access_fleet_flow_fuel_expense_safety,fleet.flow.fuel.expense safety officer,model_fleet_flow_fuel_expense,fleetflow.fleetflow_group_safety_officer,1,0,0,0
+access_fleet_flow_vehicle_dispatcher,fleet.flow.vehicle dispatcher,model_fleet_flow_vehicle,fleetflow.fleetflow_group_dispatcher,1,1,0,0
+access_fleet_flow_driver_dispatcher,fleet.flow.driver dispatcher,model_fleet_flow_driver,fleetflow.fleetflow_group_dispatcher,1,1,0,0
+access_fleet_flow_trip_dispatcher,fleet.flow.trip dispatcher,model_fleet_flow_trip,fleetflow.fleetflow_group_dispatcher,1,1,1,0
+access_fleet_flow_maintenance_dispatcher,fleet.flow.maintenance dispatcher,model_fleet_flow_maintenance,fleetflow.fleetflow_group_dispatcher,1,0,0,0
+access_fleet_flow_fuel_expense_dispatcher,fleet.flow.fuel.expense dispatcher,model_fleet_flow_fuel_expense,fleetflow.fleetflow_group_dispatcher,1,1,1,0
+access_fleet_flow_vehicle_manager,fleet.flow.vehicle fleet manager,model_fleet_flow_vehicle,fleetflow.fleetflow_group_fleet_manager,1,1,1,1
+access_fleet_flow_driver_manager,fleet.flow.driver fleet manager,model_fleet_flow_driver,fleetflow.fleetflow_group_fleet_manager,1,1,1,1
+access_fleet_flow_trip_manager,fleet.flow.trip fleet manager,model_fleet_flow_trip,fleetflow.fleetflow_group_fleet_manager,1,1,1,1
+access_fleet_flow_maintenance_manager,fleet.flow.maintenance fleet manager,model_fleet_flow_maintenance,fleetflow.fleetflow_group_fleet_manager,1,1,1,1
+access_fleet_flow_fuel_expense_manager,fleet.flow.fuel.expense fleet manager,model_fleet_flow_fuel_expense,fleetflow.fleetflow_group_fleet_manager,1,1,1,1
+access_fleet_flow_report_wizard_manager,fleet.flow.report.wizard fleet manager,model_fleet_flow_report_wizard,fleetflow.fleetflow_group_fleet_manager,1,1,1,1

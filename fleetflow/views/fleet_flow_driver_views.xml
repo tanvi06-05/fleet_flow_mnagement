@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <!-- ============================================================ -->
-    <!--  Driver Form View                                             -->
-    <!-- ============================================================ -->
     <record id="fleetflow_driver_view_form" model="ir.ui.view">
         <field name="name">fleet.flow.driver.form</field>
         <field name="model">fleet.flow.driver</field>
@@ -28,7 +25,6 @@
                             <field name="trip_count" widget="statinfo" string="Trips"/>
                         </button>
                     </div>
-                    <!-- License Expiry Alert Banner -->
                     <div class="alert alert-danger" role="alert"
                         invisible="not is_license_expired">
                         <strong>⚠ License Expired!</strong>
@@ -36,7 +32,7 @@
                     </div>
                     <div class="alert alert-warning" role="alert"
                         invisible="is_license_expired or license_days_remaining &gt; 30">
-                        <strong>⏰ License Expiring Soon!</strong>
+                        <strong>License Expiring Soon!</strong>
                         This driver's license expires in <field name="license_days_remaining" readonly="1"/> days.
                     </div>
                     <field name="image" widget="image" class="oe_avatar"/>
@@ -75,9 +71,6 @@
         </field>
     </record>
 
-    <!-- ============================================================ -->
-    <!--  Driver List View                                             -->
-    <!-- ============================================================ -->
     <record id="fleetflow_driver_view_list" model="ir.ui.view">
         <field name="name">fleet.flow.driver.list</field>
         <field name="model">fleet.flow.driver</field>
@@ -104,9 +97,6 @@
         </field>
     </record>
 
-    <!-- ============================================================ -->
-    <!--  Driver Search View                                           -->
-    <!-- ============================================================ -->
     <record id="fleetflow_driver_view_search" model="ir.ui.view">
         <field name="name">fleet.flow.driver.search</field>
         <field name="model">fleet.flow.driver</field>
@@ -130,9 +120,6 @@
         </field>
     </record>
 
-    <!-- ============================================================ -->
-    <!--  Driver Action                                                -->
-    <!-- ============================================================ -->
     <record id="fleetflow_driver_action" model="ir.actions.act_window">
         <field name="name">Drivers</field>
         <field name="res_model">fleet.flow.driver</field>

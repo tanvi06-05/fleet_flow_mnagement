@@ -6,6 +6,7 @@ class FleetFlowDriver(models.Model):
     _name = 'fleet.flow.driver'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'FleetFlow Driver'
+    _rec_name = 'name'
     _order = 'name asc'
 
     name = fields.Char(

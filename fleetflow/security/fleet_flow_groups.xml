@@ -8,10 +8,6 @@
         <field name="category_id" ref="base.module_category_human_resources"/>
     </record>
 
-    <!-- ============================================================ -->
-    <!--  RBAC Security Groups                                         -->
-    <!-- ============================================================ -->
-
     <!-- Group 1: Financial Analyst (read-only reports) -->
     <record id="fleetflow_group_financial_analyst" model="res.groups">
         <field name="name">Financial Analyst</field>

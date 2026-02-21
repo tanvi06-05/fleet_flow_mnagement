@@ -44,6 +44,13 @@ Main Features
     ],
     'installable': True,
     'application': True,
+    'assets': {
+        'web.assets_backend': [
+            'fleetflow/static/src/css/fleetflow.css',
+            'fleetflow/static/src/js/fleet_flow_dashboard.js',
+            'fleetflow/static/src/xml/fleet_flow_dashboard.xml',
+        ],
+    },
     'author': 'FleetFlow',
     'license': 'LGPL-3',
 }

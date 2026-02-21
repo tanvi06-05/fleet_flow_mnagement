@@ -6,11 +6,12 @@ class FleetFlowVehicle(models.Model):
     _name = 'fleet.flow.vehicle'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'FleetFlow Vehicle'
+    _rec_name = 'name'
     _order = 'license_plate asc'
-    _sql_constraints = [
-        ('license_plate_unique', 'UNIQUE(license_plate)',
-         'License plate must be unique!'),
-    ]
+    _license_plate_unique = models.Constraint(
+        'UNIQUE(license_plate)',
+        'License plate must be unique!',
+    )
 
     name = fields.Char(
         string='Vehicle Name / Model',

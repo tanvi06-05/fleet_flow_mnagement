@@ -1,0 +1,281 @@
+/* ============================================================
+   FleetFlow — Custom CSS Styles
+   ============================================================ */
+
+/* ---- Status Badge Colors ---- */
+.o_fleetflow_status_available {
+    background-color: #28a745 !important;
+    color: #fff !important;
+}
+
+.o_fleetflow_status_on_trip {
+    background-color: #17a2b8 !important;
+    color: #fff !important;
+}
+
+.o_fleetflow_status_in_shop {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+}
+
+.o_fleetflow_status_retired {
+    background-color: #dc3545 !important;
+    color: #fff !important;
+}
+
+/* ---- Alert Banners in Driver Form ---- */
+.o_form_view .alert-danger,
+.o_form_view .alert-warning {
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+/* ---- Stat Buttons Enhancement ---- */
+.o_form_view .oe_stat_button .o_stat_info .o_stat_value {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* ---- Trip Kanban Cards ---- */
+.o_kanban_view .o_kanban_record .o_fleetflow_trip_card {
+    border-left: 4px solid #17a2b8;
+    padding-left: 12px;
+}
+
+/* ============================================================
+   Dashboard — Command Center
+   ============================================================ */
+.o_fleetflow_dashboard {
+    padding: 16px 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.o_dashboard_icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #1a73e8, #4285f4);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.o_fleetflow_dashboard_header h2 {
+    font-size: 1.35rem;
+    color: #1a1a2e;
+}
+
+/* ---- KPI Cards ---- */
+.o_fleetflow_kpi_card {
+    border-radius: 12px;
+    padding: 14px 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid transparent;
+    height: 100%;
+}
+
+.o_fleetflow_kpi_card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.o_kpi_icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.o_kpi_content {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.o_kpi_value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.o_kpi_label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+.o_kpi_sublabel {
+    font-size: 0.75rem;
+    opacity: 0.7;
+}
+
+/* KPI Color Variants */
+.o_kpi_primary {
+    background: linear-gradient(135deg, #e8f0fe 0%, #d2e3fc 100%);
+    border-color: #aecbfa;
+}
+
+.o_kpi_primary .o_kpi_icon {
+    background: #1a73e8;
+    color: #fff;
+}
+
+.o_kpi_primary .o_kpi_value {
+    color: #1a73e8;
+}
+
+.o_kpi_primary .o_kpi_label {
+    color: #174ea6;
+}
+
+.o_kpi_success {
+    background: linear-gradient(135deg, #e6f4ea 0%, #ceead6 100%);
+    border-color: #a8dab5;
+}
+
+.o_kpi_success .o_kpi_icon {
+    background: #1e8e3e;
+    color: #fff;
+}
+
+.o_kpi_success .o_kpi_value {
+    color: #1e8e3e;
+}
+
+.o_kpi_success .o_kpi_label {
+    color: #137333;
+}
+
+.o_kpi_warning {
+    background: linear-gradient(135deg, #fef7e0 0%, #feefc3 100%);
+    border-color: #fdd663;
+}
+
+.o_kpi_warning .o_kpi_icon {
+    background: #f9ab00;
+    color: #fff;
+}
+
+.o_kpi_warning .o_kpi_value {
+    color: #e37400;
+}
+
+.o_kpi_warning .o_kpi_label {
+    color: #b06000;
+}
+
+.o_kpi_info {
+    background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
+    border-color: #9fa8da;
+}
+
+.o_kpi_info .o_kpi_icon {
+    background: #5c6bc0;
+    color: #fff;
+}
+
+.o_kpi_info .o_kpi_value {
+    color: #3949ab;
+}
+
+.o_kpi_info .o_kpi_label {
+    color: #283593;
+}
+
+/* ---- Detail Cards ---- */
+.o_fleetflow_detail_card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    height: 100%;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.o_detail_title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.o_detail_items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.o_detail_row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    transition: background 0.15s ease;
+}
+
+.o_detail_row[role="button"] {
+    cursor: pointer;
+}
+
+.o_detail_row[role="button"]:hover {
+    background: #f5f5f5;
+}
+
+.o_dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.o_detail_label {
+    flex: 1;
+    font-size: 0.875rem;
+    color: #555;
+}
+
+.o_detail_value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    min-width: 30px;
+    text-align: right;
+}
+
+.o_detail_total {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 8px 4px;
+    margin-top: 4px;
+    border-top: 1px dashed #ddd;
+    font-size: 0.9rem;
+    color: #666;
+    cursor: pointer;
+}
+
+.o_detail_total:hover {
+    color: #1a73e8;
+}
+
+.o_detail_alert {
+    background: #fff5f5;
+    border-radius: 6px;
+}

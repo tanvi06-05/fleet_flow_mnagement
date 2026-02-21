@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <!-- ============================================================ -->
-    <!--  Root Menu                                                    -->
-    <!-- ============================================================ -->
     <menuitem id="fleetflow_menu_root"
         name="FleetFlow"
         web_icon="fleetflow,static/description/icon.png"
         sequence="190"/>
 
-    <!-- ============================================================ -->
-    <!--  1. Dashboard                                                 -->
-    <!-- ============================================================ -->
     <menuitem id="fleetflow_menu_dashboard"
         name="Dashboard"
         parent="fleetflow_menu_root"
+        action="fleetflow_dashboard_client_action"
         sequence="10"/>
 
     <menuitem id="fleetflow_menu_dashboard_active_fleet"
@@ -65,9 +60,6 @@
         action="fleetflow_dashboard_pending_maintenance_action"
         sequence="60"/>
 
-    <!-- ============================================================ -->
-    <!--  2. Vehicles                                                  -->
-    <!-- ============================================================ -->
     <menuitem id="fleetflow_menu_vehicles"
         name="Vehicles"
         parent="fleetflow_menu_root"
@@ -79,9 +71,6 @@
         action="fleetflow_vehicle_action"
         sequence="10"/>
 
-    <!-- ============================================================ -->
-    <!--  3. Drivers                                                   -->
-    <!-- ============================================================ -->
     <menuitem id="fleetflow_menu_drivers"
         name="Drivers"
         parent="fleetflow_menu_root"
@@ -93,9 +82,6 @@
         action="fleetflow_driver_action"
         sequence="10"/>
 
-    <!-- ============================================================ -->
-    <!--  4. Trips                                                     -->
-    <!-- ============================================================ -->
     <menuitem id="fleetflow_menu_trips"
         name="Trips"
         parent="fleetflow_menu_root"
@@ -113,9 +99,6 @@
         action="fleetflow_fuel_expense_action"
         sequence="20"/>
 
-    <!-- ============================================================ -->
-    <!--  5. Maintenance                                               -->
-    <!-- ============================================================ -->
     <menuitem id="fleetflow_menu_maintenance"
         name="Maintenance"
         parent="fleetflow_menu_root"
@@ -127,9 +110,6 @@
         action="fleetflow_maintenance_action"
         sequence="10"/>
 
-    <!-- ============================================================ -->
-    <!--  6. Reports & Analytics                                       -->
-    <!-- ============================================================ -->
     <menuitem id="fleetflow_menu_reports"
         name="Reports"
         parent="fleetflow_menu_root"

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <!-- ============================================================ -->
-    <!--  Vehicle Analytics — Pivot                                    -->
-    <!-- ============================================================ -->
     <record id="fleetflow_vehicle_view_pivot" model="ir.ui.view">
         <field name="name">fleet.flow.vehicle.pivot</field>
         <field name="model">fleet.flow.vehicle</field>
@@ -20,9 +17,6 @@
         </field>
     </record>
 
-    <!-- ============================================================ -->
-    <!--  Vehicle Analytics — Graph                                    -->
-    <!-- ============================================================ -->
     <record id="fleetflow_vehicle_view_graph" model="ir.ui.view">
         <field name="name">fleet.flow.vehicle.graph</field>
         <field name="model">fleet.flow.vehicle</field>
@@ -44,9 +38,6 @@
         </field>
     </record>
 
-    <!-- ============================================================ -->
-    <!--  Trip Analytics — Pivot                                       -->
-    <!-- ============================================================ -->
     <record id="fleetflow_trip_view_pivot" model="ir.ui.view">
         <field name="name">fleet.flow.trip.pivot</field>
         <field name="model">fleet.flow.trip</field>
@@ -61,9 +52,6 @@
         </field>
     </record>
 
-    <!-- ============================================================ -->
-    <!--  Trip Analytics — Graph                                       -->
-    <!-- ============================================================ -->
     <record id="fleetflow_trip_view_graph" model="ir.ui.view">
         <field name="name">fleet.flow.trip.graph</field>
         <field name="model">fleet.flow.trip</field>
@@ -86,9 +74,6 @@
         </field>
     </record>
 
-    <!-- ============================================================ -->
-    <!--  Fuel & Expense Analytics — Pivot                             -->
-    <!-- ============================================================ -->
     <record id="fleetflow_fuel_expense_view_pivot" model="ir.ui.view">
         <field name="name">fleet.flow.fuel.expense.pivot</field>
         <field name="model">fleet.flow.fuel.expense</field>
@@ -103,9 +88,6 @@
         </field>
     </record>
 
-    <!-- ============================================================ -->
-    <!--  Fuel & Expense Analytics — Graph                             -->
-    <!-- ============================================================ -->
     <record id="fleetflow_fuel_expense_view_graph" model="ir.ui.view">
         <field name="name">fleet.flow.fuel.expense.graph</field>
         <field name="model">fleet.flow.fuel.expense</field>

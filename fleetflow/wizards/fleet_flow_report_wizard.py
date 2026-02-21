@@ -44,30 +44,45 @@ class FleetFlowReportWizard(models.TransientModel):
         help='Leave empty for all drivers',
     )
 
-    # Output
-    csv_file = fields.Binary(string='CSV File', readonly=True)
+    csv_file = fields.Binary(string='CSV File', readonly=True, attachment=False)
     csv_filename = fields.Char(string='Filename', readonly=True)
+
+    def _fmt_date(self, d):
+        """Return date as dd-mm-yyyy string (plain text in Excel, no ### issue)."""
+        if not d:
+            return ''
+        if isinstance(d, str):
+            from datetime import datetime
+            d = datetime.strptime(d, '%Y-%m-%d').date()
+        return d.strftime('%d-%m-%Y')
 
     def action_generate_report(self):
         self.ensure_one()
         method_name = f'_generate_{self.report_type}'
         if not hasattr(self, method_name):
             raise UserError(_('Invalid report type selected.'))
+
         headers, rows = getattr(self, method_name)()
-        # Build CSV
+
         output = io.StringIO()
+        output.write('\ufeff')
         writer = csv.writer(output)
         writer.writerow(headers)
         writer.writerows(rows)
         csv_content = output.getvalue().encode('utf-8')
-        self.csv_file = base64.b64encode(csv_content)
-        self.csv_filename = f'fleetflow_{self.report_type}_{date.today().isoformat()}.csv'
+
+        filename = f'fleetflow_{self.report_type}_{date.today().strftime("%d-%m-%Y")}.csv'
+
+        self.write({
+            'csv_file': base64.b64encode(csv_content),
+            'csv_filename': filename,
+        })
+
         return {
-            'type': 'ir.actions.act_window',
-            'res_model': 'fleet.flow.report.wizard',
-            'view_mode': 'form',
-            'res_id': self.id,
-            'target': 'new',
+            'type': 'ir.actions.act_url',
+            'url': f'/web/content?model=fleet.flow.report.wizard&id={self.id}'
+                   f'&field=csv_file&filename={filename}&download=true',
+            'target': 'self',
         }
 
     def _generate_fuel_expense(self):
@@ -78,17 +93,19 @@ class FleetFlowReportWizard(models.TransientModel):
             domain.append(('date', '<=', self.date_to))
         if self.vehicle_id:
             domain.append(('vehicle_id', '=', self.vehicle_id.id))
+
         records = self.env['fleet.flow.fuel.expense'].search(domain, order='date asc')
+
         headers = ['Date', 'Vehicle', 'Expense Type', 'Amount', 'Liters', 'Trip', 'Notes']
         rows = []
         for rec in records:
             rows.append([
-                str(rec.date),
-                rec.vehicle_id.name,
+                self._fmt_date(rec.date),
+                rec.vehicle_id.name if rec.vehicle_id else '',
                 dict(rec._fields['expense_type'].selection).get(rec.expense_type, ''),
-                rec.amount,
+                rec.amount or 0.0,
                 rec.liters or '',
-                rec.trip_id.name or '',
+                rec.trip_id.name if rec.trip_id else '',
                 rec.notes or '',
             ])
         return headers, rows
@@ -103,7 +120,9 @@ class FleetFlowReportWizard(models.TransientModel):
             domain.append(('vehicle_id', '=', self.vehicle_id.id))
         if self.driver_id:
             domain.append(('driver_id', '=', self.driver_id.id))
+
         records = self.env['fleet.flow.trip'].search(domain, order='departure_date asc')
+
         headers = [
             'Trip Ref', 'Vehicle', 'Driver', 'Origin', 'Destination',
             'Distance (km)', 'Cargo (kg)', 'Revenue', 'Departure', 'Arrival',
@@ -112,15 +131,15 @@ class FleetFlowReportWizard(models.TransientModel):
         for rec in records:
             rows.append([
                 rec.name,
-                rec.vehicle_id.name,
-                rec.driver_id.name,
-                rec.origin,
-                rec.destination,
-                rec.distance,
-                rec.cargo_weight,
-                rec.revenue,
-                str(rec.departure_date or ''),
-                str(rec.arrival_date or ''),
+                rec.vehicle_id.name if rec.vehicle_id else '',
+                rec.driver_id.name if rec.driver_id else '',
+                rec.origin or '',
+                rec.destination or '',
+                rec.distance or 0.0,
+                rec.cargo_weight or 0.0,
+                rec.revenue or 0.0,
+                self._fmt_date(rec.departure_date),
+                self._fmt_date(rec.arrival_date),
             ])
         return headers, rows
 
@@ -128,7 +147,9 @@ class FleetFlowReportWizard(models.TransientModel):
         domain = []
         if self.driver_id:
             domain.append(('id', '=', self.driver_id.id))
+
         drivers = self.env['fleet.flow.driver'].search(domain, order='name asc')
+
         headers = [
             'Driver', 'License Category', 'License Expiry', 'License Status',
             'Safety Score', 'Status', 'Total Trips', 'Completed Trips',
@@ -145,9 +166,9 @@ class FleetFlowReportWizard(models.TransientModel):
             rows.append([
                 drv.name,
                 dict(drv._fields['license_category'].selection).get(drv.license_category, ''),
-                str(drv.license_expiry),
+                self._fmt_date(drv.license_expiry),
                 'Expired' if drv.is_license_expired else f'{drv.license_days_remaining} days remaining',
-                drv.safety_score,
+                drv.safety_score or 0.0,
                 dict(drv._fields['status'].selection).get(drv.status, ''),
                 total,
                 completed,
@@ -158,7 +179,9 @@ class FleetFlowReportWizard(models.TransientModel):
         domain = []
         if self.vehicle_id:
             domain.append(('id', '=', self.vehicle_id.id))
+
         vehicles = self.env['fleet.flow.vehicle'].search(domain, order='name asc')
+
         headers = [
             'Vehicle', 'License Plate', 'Type', 'Status',
             'Acquisition Cost', 'Total Revenue', 'Total Fuel Cost',
@@ -169,16 +192,16 @@ class FleetFlowReportWizard(models.TransientModel):
         for veh in vehicles:
             rows.append([
                 veh.name,
-                veh.license_plate,
+                veh.license_plate or '',
                 dict(veh._fields['vehicle_type'].selection).get(veh.vehicle_type, ''),
                 dict(veh._fields['status'].selection).get(veh.status, ''),
-                veh.acquisition_cost,
-                veh.total_revenue,
-                veh.total_fuel_cost,
-                veh.total_maintenance_cost,
-                round(veh.roi, 2),
-                veh.total_distance,
-                round(veh.cost_per_km, 2),
-                round(veh.fuel_efficiency, 2),
+                veh.acquisition_cost or 0.0,
+                veh.total_revenue or 0.0,
+                veh.total_fuel_cost or 0.0,
+                veh.total_maintenance_cost or 0.0,
+                round(veh.roi or 0.0, 2),
+                veh.total_distance or 0.0,
+                round(veh.cost_per_km or 0.0, 2),
+                round(veh.fuel_efficiency or 0.0, 2),
             ])
         return headers, rows
